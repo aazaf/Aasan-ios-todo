@@ -35,11 +35,11 @@ class NewTaskViewController: UIViewController {
     
     private func observeForm(){
         NotificationCenter.default.publisher(for:
-            UITextField.textDidChangeNotification).map { (notification) -> String? in
-                return (notification.object as? UITextField)?.text
-        }.sink {[unowned self] (text) in
-            self.taskString = text
-        }.store(in: &subscribers)
+            UITextField.textDidChangeNotification).map({
+                ($0.object as? UITextField)?.text
+            }).sink {[unowned self] (text) in
+                self.taskString = text
+            }.store(in: &subscribers)
         
         $taskString.sink {[unowned self] (text) in
             self.saveButton.isEnabled = text?.isEmpty == false
@@ -83,5 +83,12 @@ class NewTaskViewController: UIViewController {
     @objc private func dismissViewController(){
          dismiss(animated: true, completion: nil)
      }
+    
+    @IBAction func calendarButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+    }
+    
 }
 

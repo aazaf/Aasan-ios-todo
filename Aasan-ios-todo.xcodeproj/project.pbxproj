@@ -19,6 +19,7 @@
 		7F907774275CA6410014D6C0 /* OngoingTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907773275CA6410014D6C0 /* OngoingTasksTableViewController.swift */; };
 		7F907776275CA6FB0014D6C0 /* DoneTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907775275CA6FB0014D6C0 /* DoneTasksTableViewController.swift */; };
 		7F907778275CB3440014D6C0 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907777275CB3440014D6C0 /* NewTaskViewController.swift */; };
+		7F90777A275CCDFD0014D6C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F907779275CCDFD0014D6C0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		7F907773275CA6410014D6C0 /* OngoingTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTasksTableViewController.swift; sourceTree = "<group>"; };
 		7F907775275CA6FB0014D6C0 /* DoneTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneTasksTableViewController.swift; sourceTree = "<group>"; };
 		7F907777275CB3440014D6C0 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		7F907779275CCDFD0014D6C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D80D76ECB7F682C2994C04A3 /* Pods_Aasan_ios_todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aasan_ios_todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 				7F90775F275C9B660014D6C0 /* Main.storyboard */,
 				7F907762275C9B680014D6C0 /* Assets.xcassets */,
 				7F907764275C9B680014D6C0 /* LaunchScreen.storyboard */,
+				7F907779275CCDFD0014D6C0 /* GoogleService-Info.plist */,
 				7F907767275C9B680014D6C0 /* Info.plist */,
 			);
 			path = "Aasan-ios-todo";
@@ -184,6 +187,7 @@
 			files = (
 				7F907766275C9B680014D6C0 /* LaunchScreen.storyboard in Resources */,
 				7F907763275C9B680014D6C0 /* Assets.xcassets in Resources */,
+				7F90777A275CCDFD0014D6C0 /* GoogleService-Info.plist in Resources */,
 				7F90776E275C9BCE0014D6C0 /* Podfile in Resources */,
 				7F907761275C9B660014D6C0 /* Main.storyboard in Resources */,
 			);
