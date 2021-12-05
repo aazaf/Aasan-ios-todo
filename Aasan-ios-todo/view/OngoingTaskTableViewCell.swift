@@ -10,6 +10,8 @@ import UIKit
 
 class OngoingTaskTableViewCell: UITableViewCell  {
     
+    var actionButtonDidTap : (() -> Void)?
+    
     @IBOutlet weak var titleLable : UILabel!
     @IBOutlet weak var deadlineLabel : UILabel!
     
@@ -18,6 +20,6 @@ class OngoingTaskTableViewCell: UITableViewCell  {
      }
     
     @IBAction func actionButtonTapped(_ sender : UIButton){
-        
+        actionButtonDidTap?()
     }
 }

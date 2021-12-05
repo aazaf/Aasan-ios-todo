@@ -35,12 +35,22 @@ class DatabaseManager {
             if let error = error {
                 completion(.failure(error))
             }else{
-                let tempTasks = try? snapshot?.documents.compactMap({
+                var tasks = [Task]()
+                do {
+                    tasks = try snapshot?.documents.compactMap({
                     return try $0.data(as: Task.self)
-                })
-                let tasks = tempTasks ?? []
+                    }) ?? []
+                } catch(let error)  {
+                    completion(.failure(error))
+                }
                 completion(.success(tasks))
             }
         })
     }
+    
+    func UpdateTaskToDone(id: String,  completion: (Result<[Void], Error>) -> Void){
+        
+    }
+    
+    
 }

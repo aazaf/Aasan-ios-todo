@@ -29,6 +29,18 @@ class OngoingTasksTableViewController: UITableViewController {
             case .success(let tasks):
                 self?.tasks = tasks
             case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func handleActionButton(for task: Task){
+        guard let id = task.id else { return }
+        databaseManager.UpdateTaskToDone(id: id) { (result) in
+            switch result {
+            case .success:
+                print("set to done")
+            case .failure(let error):
                 print(error.localizedDescription)
             }
         }
@@ -46,6 +58,9 @@ extension OngoingTasksTableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier:
         "cellId", for: indexPath) as! OngoingTaskTableViewCell
         let task = tasks[indexPath.row]
+        cell.actionButtonDidTap = { [weak self] in
+            self?.handleActionButton(for: task)
+        }
         cell.configure(with: task)
         return cell
     }
