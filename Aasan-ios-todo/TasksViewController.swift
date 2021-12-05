@@ -53,6 +53,10 @@ class TasksViewController: UIViewController {
             doneTasksContainerView.isHidden = false
         }
     }
+    
+    @IBAction func addTasksButtonTapped(_ sender: UIButton){
+         performSegue(withIdentifier: "showNewTask", sender: nil)
+    }
 
 
 }

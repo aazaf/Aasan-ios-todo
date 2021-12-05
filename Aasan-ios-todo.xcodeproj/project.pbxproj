@@ -18,6 +18,7 @@
 		7F907771275CA1C50014D6C0 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907770275CA1C50014D6C0 /* MenuSection.swift */; };
 		7F907774275CA6410014D6C0 /* OngoingTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907773275CA6410014D6C0 /* OngoingTasksTableViewController.swift */; };
 		7F907776275CA6FB0014D6C0 /* DoneTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907775275CA6FB0014D6C0 /* DoneTasksTableViewController.swift */; };
+		7F907778275CB3440014D6C0 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907777275CB3440014D6C0 /* NewTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		7F907770275CA1C50014D6C0 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
 		7F907773275CA6410014D6C0 /* OngoingTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTasksTableViewController.swift; sourceTree = "<group>"; };
 		7F907775275CA6FB0014D6C0 /* DoneTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneTasksTableViewController.swift; sourceTree = "<group>"; };
+		7F907777275CB3440014D6C0 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		D80D76ECB7F682C2994C04A3 /* Pods_Aasan_ios_todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aasan_ios_todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +108,7 @@
 			children = (
 				7F907773275CA6410014D6C0 /* OngoingTasksTableViewController.swift */,
 				7F907775275CA6FB0014D6C0 /* DoneTasksTableViewController.swift */,
+				7F907777275CB3440014D6C0 /* NewTaskViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F90775E275C9B660014D6C0 /* TasksViewController.swift in Sources */,
+				7F907778275CB3440014D6C0 /* NewTaskViewController.swift in Sources */,
 				7F90775A275C9B660014D6C0 /* AppDelegate.swift in Sources */,
 				7F907771275CA1C50014D6C0 /* MenuSection.swift in Sources */,
 				7F90775C275C9B660014D6C0 /* SceneDelegate.swift in Sources */,
