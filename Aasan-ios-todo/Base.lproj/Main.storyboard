@@ -177,6 +177,7 @@
                         <outlet property="backgroundView" destination="VO4-rS-u6s" id="B5Y-yb-72p"/>
                         <outlet property="containerView" destination="Acv-Li-1q4" id="spn-1J-h2s"/>
                         <outlet property="containerViewBottomConstraint" destination="YU1-Hs-xYq" id="Ys7-PQ-F3f"/>
+                        <outlet property="saveButton" destination="kqA-tz-SAH" id="tmg-1T-nsE"/>
                         <outlet property="taskTextField" destination="HSH-Zn-BKh" id="Yhr-md-o1f"/>
                     </connections>
                 </viewController>

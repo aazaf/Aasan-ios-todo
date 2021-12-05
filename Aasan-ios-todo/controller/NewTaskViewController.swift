@@ -15,11 +15,15 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var taskTextField: UITextField!
-    
+    @IBOutlet weak var saveButton: UIButton!
+
+    private var subscribers = Set<AnyCancellable>()
+    @Published private var taskString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        observeForm()
         setupGesture()
         observeKeyboard()
     }
@@ -28,6 +32,19 @@ class NewTaskViewController: UIViewController {
          super.viewDidAppear(animated)
          taskTextField.becomeFirstResponder()
      }
+    
+    private func observeForm(){
+        NotificationCenter.default.publisher(for:
+            UITextField.textDidChangeNotification).map { (notification) -> String? in
+                return (notification.object as? UITextField)?.text
+        }.sink {[unowned self] (text) in
+            self.taskString = text
+        }.store(in: &subscribers)
+        
+        $taskString.sink {[unowned self] (text) in
+            self.saveButton.isEnabled = text?.isEmpty == false
+        }.store(in: &subscribers)
+    }
     
     private func setupViews(){
          backgroundView.backgroundColor = UIColor.init(white: 0.3, alpha: 0.4)
