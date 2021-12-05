@@ -16,7 +16,7 @@ class OngoingTasksTableViewController: UITableViewController {
            didSet{
                tableView.reloadData()
            }
-       }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class OngoingTasksTableViewController: UITableViewController {
     }
     
     private func addTaskslistener(){
-        databaseManager.addTasksListener { [weak self] (result) in
+        databaseManager.addTasksListener(forDoneTasks: false) { [weak self] (result) in
             switch result {
             case .success(let tasks):
                 self?.tasks = tasks

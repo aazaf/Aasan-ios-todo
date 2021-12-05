@@ -30,8 +30,11 @@ class DatabaseManager {
         }
     }
     
-    func addTasksListener(completion: @escaping (Result<[Task], Error>) -> Void){
-        listener = tasksCollection.addSnapshotListener({ (snapshot, error) in
+    func addTasksListener(forDoneTasks isDone: Bool, completion: @escaping (Result<[Task], Error>) -> Void){
+        listener = tasksCollection
+            .whereField("isDone", isEqualTo: isDone)
+            .order(by: "createdAt", descending: true)
+            .addSnapshotListener({ (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             }else{
@@ -48,9 +51,14 @@ class DatabaseManager {
         })
     }
     
-    func UpdateTaskToDone(id: String,  completion: (Result<[Void], Error>) -> Void){
-        
+    func UpdateTaskToDone(id: String,  completion: @escaping (Result<Void, Error>) -> Void){
+        let fields : [String : Any] = ["isDone" : true, "doneAt" : Date()]
+        tasksCollection.document(id).updateData(fields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            }else{
+                completion(.success(()))
+            }
+        }
     }
-    
-    
 }
