@@ -12,6 +12,8 @@ import FirebaseFirestoreSwift
 class DatabaseManager {
     private let db = Firestore.firestore()
     private lazy var tasksCollection = db.collection("tasks")
+    private var listener : ListenerRegistration?
+
     
     func addTask(_ task: Task, completion: @escaping(Result<Void, Error>) -> Void) {
     
@@ -26,5 +28,19 @@ class DatabaseManager {
         }catch (let error){
             completion(.failure(error))
         }
+    }
+    
+    func addTasksListener(completion: @escaping (Result<[Task], Error>) -> Void){
+        listener = tasksCollection.addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            }else{
+                let tempTasks = try? snapshot?.documents.compactMap({
+                    return try $0.data(as: Task.self)
+                })
+                let tasks = tempTasks ?? []
+                completion(.success(tasks))
+            }
+        })
     }
 }
