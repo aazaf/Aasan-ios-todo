@@ -20,8 +20,8 @@ class NewTaskViewController: UIViewController {
     private var subscribers = Set<AnyCancellable>()
     @Published private var taskString: String?
     
-    private let databaseManager = DatabaseManager()
-    
+    weak var delegate : TasksVCDelegate?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -92,14 +92,7 @@ class NewTaskViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let taskString = self.taskString else { return}
         let task = Task.init(title: taskString)
-        databaseManager.addTask(task) { (result) in
-            switch result {
-            case .success:
-                print("done")
-            case .failure(let error):
-                print("error: \(error.localizedDescription)")
-            }
-        }
+        delegate?.didAddTask(task)
     }
     
 }
