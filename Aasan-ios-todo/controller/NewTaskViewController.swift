@@ -62,6 +62,7 @@ class NewTaskViewController: UIViewController {
     private func setupGesture(){
          let tapGesture = UITapGestureRecognizer(target: self, action:
              #selector(dismissViewController))
+        tapGesture.delegate = self
          view.addGestureRecognizer(tapGesture)
      }
     
@@ -97,6 +98,12 @@ class NewTaskViewController: UIViewController {
         ])
     }
     
+    private func dismissCalendarView(completion: () -> Void){
+        calanderView.removeFromSuperview()
+        completion()
+        
+    }
+    
     @objc private func dismissViewController(){
          dismiss(animated: true, completion: nil)
      }
@@ -114,3 +121,17 @@ class NewTaskViewController: UIViewController {
     
 }
 
+extension NewTaskViewController : UIGestureRecognizerDelegate{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch:
+        UITouch) -> Bool {
+        if calanderView.isDescendant(of: view){
+            if touch.view?.isDescendant(of: calanderView) == false{
+                dismissCalendarView { [unowned self] in
+                    self.taskTextField.becomeFirstResponder()
+                }
+            }
+            return false
+        }
+        return true
+    }
+}
