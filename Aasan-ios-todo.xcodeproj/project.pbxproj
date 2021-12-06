@@ -25,6 +25,7 @@
 		7F907782275CD29C0014D6C0 /* TasksVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907781275CD29C0014D6C0 /* TasksVCDelegate.swift */; };
 		7F907785275CEE1C0014D6C0 /* OngoingTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907784275CEE1C0014D6C0 /* OngoingTaskTableViewCell.swift */; };
 		7F907787275D20120014D6C0 /* DoneTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907786275D20120014D6C0 /* DoneTaskTableViewCell.swift */; };
+		7F907789275DAB710014D6C0 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F907788275DAB710014D6C0 /* Animatable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		7F907781275CD29C0014D6C0 /* TasksVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVCDelegate.swift; sourceTree = "<group>"; };
 		7F907784275CEE1C0014D6C0 /* OngoingTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTaskTableViewCell.swift; sourceTree = "<group>"; };
 		7F907786275D20120014D6C0 /* DoneTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneTaskTableViewCell.swift; sourceTree = "<group>"; };
+		7F907788275DAB710014D6C0 /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
 		D80D76ECB7F682C2994C04A3 /* Pods_Aasan_ios_todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aasan_ios_todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				7F907781275CD29C0014D6C0 /* TasksVCDelegate.swift */,
+				7F907788275DAB710014D6C0 /* Animatable.swift */,
 			);
 			path = protocol;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				7F90775C275C9B660014D6C0 /* SceneDelegate.swift in Sources */,
 				7F907776275CA6FB0014D6C0 /* DoneTasksTableViewController.swift in Sources */,
 				7F907774275CA6410014D6C0 /* OngoingTasksTableViewController.swift in Sources */,
+				7F907789275DAB710014D6C0 /* Animatable.swift in Sources */,
 				7F907787275D20120014D6C0 /* DoneTaskTableViewCell.swift in Sources */,
 				7F90777F275CD0050014D6C0 /* DatabaseManager.swift in Sources */,
 			);

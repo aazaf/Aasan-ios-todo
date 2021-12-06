@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Loaf
 
-class OngoingTasksTableViewController: UITableViewController {
+class OngoingTasksTableViewController: UITableViewController, Animatable {
     
     private let databaseManager = DatabaseManager()
     
@@ -39,7 +40,7 @@ class OngoingTasksTableViewController: UITableViewController {
         databaseManager.UpdateTaskToDone(id: id) { (result) in
             switch result {
             case .success:
-                print("set to done")
+                self.showInfoToToast(message: "Move to done", location: .top, duration: 2.0)
             case .failure(let error):
                 print(error.localizedDescription)
             }
