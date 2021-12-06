@@ -14,14 +14,14 @@ protocol Animatable {
 }
 
 extension Animatable where Self: UIViewController{
-    
-    func showInfoToToast(message: String, location: Loaf.Location, duration: TimeInterval = 1.0) {
+
+    func showToast(state: Loaf.State, message: String, location: Loaf.Location = .top, duration: TimeInterval = 1.0 ){
         DispatchQueue.main.async {
             Loaf(message,
                  state: .info,
                  location: location,
                  sender: self)
-                .show(.custom(duration))
+                 .show(.custom(duration))
         }
     }
 }

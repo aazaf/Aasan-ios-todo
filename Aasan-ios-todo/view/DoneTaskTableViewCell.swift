@@ -10,9 +10,15 @@ import UIKit
 
 class DoneTaskTableViewCell: UITableViewCell {
     
+    var actionButtonDidTap : (() -> Void)?
+    
     @IBOutlet weak var titleLable: UILabel!
     
     func configure(with task: Task){
         titleLable.text = task.title
+    }
+    
+    @IBAction func actionButtonTapped(_ sender : UIButton){
+        actionButtonDidTap?()
     }
 }

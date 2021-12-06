@@ -37,12 +37,12 @@ class OngoingTasksTableViewController: UITableViewController, Animatable {
     
     private func handleActionButton(for task: Task){
         guard let id = task.id else { return }
-        databaseManager.UpdateTaskToDone(id: id) { (result) in
+        databaseManager.UpdateTaskToDone(id: id) { [weak self] (result) in
             switch result {
             case .success:
-                self.showInfoToToast(message: "Move to done", location: .top, duration: 2.0)
+                self?.showToast(state: .info, message: "move to done", duration: 2.0)
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.showToast(state: .error, message: error.localizedDescription)
             }
         }
     }

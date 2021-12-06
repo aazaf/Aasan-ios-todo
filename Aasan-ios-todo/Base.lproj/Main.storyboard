@@ -295,6 +295,9 @@
                                                         <constraint firstAttribute="width" constant="24" id="WQz-9K-bTE"/>
                                                     </constraints>
                                                     <state key="normal" image="checkmark" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="actionButtonTapped:" destination="rW9-ql-qZG" eventType="touchUpInside" id="mq1-mI-P2e"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="some randon task here! " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5m-6U-NGz">
                                                     <rect key="frame" x="40" y="0.0" width="342" height="54"/>

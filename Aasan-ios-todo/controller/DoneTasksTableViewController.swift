@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DoneTasksTableViewController: UITableViewController {
+class DoneTasksTableViewController: UITableViewController, Animatable {
     
     private var tasks: [Task] = [] {
         didSet{
@@ -33,6 +33,18 @@ class DoneTasksTableViewController: UITableViewController {
             }
         }
     }
+    
+    private func handleActionButton(for task: Task){
+        guard let id = task.id else { return }
+        databaseManager.UpdateTaskToDone(id: id) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.showToast(state: .info, message: "move to done", duration: 2.0)
+            case .failure(let error):
+                self?.showToast(state: .error, message: error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension DoneTasksTableViewController{
@@ -48,6 +60,9 @@ extension DoneTasksTableViewController{
             indexPath) as! DoneTaskTableViewCell
         let task = tasks[indexPath.item]
         cell.configure(with: task)
+        cell.actionButtonDidTap = { [weak self] in
+            self?.handleActionButton(for: task)
+        }
         return cell
     }
 }
