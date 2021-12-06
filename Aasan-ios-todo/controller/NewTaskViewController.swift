@@ -16,14 +16,19 @@ class NewTaskViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deadLineLable: UILabel!
+    
 
     private var subscribers = Set<AnyCancellable>()
+    
     @Published private var taskString: String?
+    @Published private var deadline: Date?
     
     weak var delegate : TasksVCDelegate?
     
     private lazy var calanderView: CalendarView = {
        let view = CalendarView()
+        view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -51,6 +56,10 @@ class NewTaskViewController: UIViewController {
         
         $taskString.sink {[unowned self] (text) in
             self.saveButton.isEnabled = text?.isEmpty == false
+        }.store(in: &subscribers)
+        
+        $deadline.sink { (date) in
+            self.deadLineLable.text = date?.toString() ?? ""
         }.store(in: &subscribers)
     }
     
@@ -134,4 +143,19 @@ extension NewTaskViewController : UIGestureRecognizerDelegate{
         }
         return true
     }
+}
+
+extension NewTaskViewController : CalendarViewDelegate{
+    func calendarViewDidSelectDate(date: Date) {
+        dismissCalendarView { [unowned self] in
+            self.taskTextField.becomeFirstResponder()
+            self.deadline = date
+        }
+    }
+    
+    func calendarViewDidTapRemoveButton() {
+        
+    }
+    
+    
 }

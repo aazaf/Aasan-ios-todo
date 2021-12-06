@@ -11,6 +11,8 @@ import FSCalendar
 
 class CalendarView: UIView {
     
+    weak var delegate: CalendarViewDelegate?
+    
     private lazy var calendar: FSCalendar = {
         let calendar = FSCalendar()
         calendar.translatesAutoresizingMaskIntoConstraints = false
@@ -67,12 +69,12 @@ class CalendarView: UIView {
     }
     
     @objc func removeButtonTapped(_ sender: UIButton ){
-        print("removed")
+       delegate?.calendarViewDidTapRemoveButton()
     }
 }
 
 extension CalendarView : FSCalendarDelegate{
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print("date \(date)")
+        delegate?.calendarViewDidSelectDate(date: date)
     }
 }
