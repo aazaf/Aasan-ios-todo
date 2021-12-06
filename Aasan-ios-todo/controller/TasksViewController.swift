@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TasksViewController: UIViewController {
+class TasksViewController: UIViewController, Animatable {
 
     @IBOutlet weak var menuSegmentedControl: UISegmentedControl!
     @IBOutlet weak var ongoingTasksContainerView: UIView!
@@ -55,16 +55,46 @@ class TasksViewController: UIViewController {
             doneTasksContainerView.isHidden = false
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         if segue.identifier == "showNewTask",
             let destination = segue.destination as? NewTaskViewController {
             destination.delegate = self
+        } else if segue.identifier == "showOngoingTasks" {
+            let destination = segue.destination as?
+            OngoingTasksTableViewController
+            destination?.delegate = self
+        }
+    }
+    
+    private func deleteTask(id: String){
+        databaseManager.deleteTask(id: id) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.showToast(state: .success, message: "task deleted", duration: 2.0)
+            case .failure(let error):
+                self?.showToast(state: .error, message: error.localizedDescription)
+            }
         }
     }
     
     @IBAction func addTasksButtonTapped(_ sender: UIButton){
          performSegue(withIdentifier: "showNewTask", sender: nil)
+    }
+}
+
+extension TasksViewController: OngoingTasksTVCDelegate{
+    
+     func showOptions(for task: Task){
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive){[unowned self] _ in
+            guard let id = task.id else { return }
+            self.deleteTask(id: id)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 

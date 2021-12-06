@@ -9,8 +9,12 @@
 import UIKit
 import Loaf
 
+protocol OngoingTasksTVCDelegate: class {
+    func showOptions(for task: Task)
+}
+
 class OngoingTasksTableViewController: UITableViewController, Animatable {
-    
+
     private let databaseManager = DatabaseManager()
     
     private var tasks: [Task] = [] {
@@ -18,6 +22,8 @@ class OngoingTasksTableViewController: UITableViewController, Animatable {
                tableView.reloadData()
            }
     }
+    
+    weak var delegate: OngoingTasksTVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,14 +36,14 @@ class OngoingTasksTableViewController: UITableViewController, Animatable {
             case .success(let tasks):
                 self?.tasks = tasks
             case .failure(let error):
-                print(error)
+                self?.showToast(state: .error, message: error.localizedDescription)
             }
         }
     }
     
     private func handleActionButton(for task: Task){
         guard let id = task.id else { return }
-        databaseManager.UpdateTaskToDone(id: id) { [weak self] (result) in
+        databaseManager.updateTaskStatus(id: id, isDone: true) { [weak self] (result) in
             switch result {
             case .success:
                 self?.showToast(state: .info, message: "move to done", duration: 2.0)
@@ -64,5 +70,11 @@ extension OngoingTasksTableViewController{
         }
         cell.configure(with: task)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let task = tasks[indexPath.item]
+        delegate?.showOptions(for: task)
     }
 }

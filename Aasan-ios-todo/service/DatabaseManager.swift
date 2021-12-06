@@ -30,6 +30,16 @@ class DatabaseManager {
         }
     }
     
+    func deleteTask(id: String, completion: @escaping(Result<Void, Error>) -> Void) {
+        tasksCollection.document(id).delete(){ (error) in
+            if let error = error {
+                completion(.failure(error))
+            }else{
+                completion(.success(()))
+            }
+        }
+    }
+    
     func addTasksListener(forDoneTasks isDone: Bool, completion: @escaping (Result<[Task], Error>) -> Void){
         listener = tasksCollection
             .whereField("isDone", isEqualTo: isDone)
@@ -50,15 +60,22 @@ class DatabaseManager {
             }
         })
     }
+        
+    func updateTaskStatus(id: String, isDone: Bool, completion: @escaping (Result<Void,
+        Error>) -> Void){
     
-    func UpdateTaskToDone(id: String,  completion: @escaping (Result<Void, Error>) -> Void){
-        let fields : [String : Any] = ["isDone" : true, "doneAt" : Date()]
+        var fields: [String: Any] = [:]
+        if isDone {
+            fields = ["isDone" : true, "doneAt" : Date()]
+        }else{
+            fields = ["isDone" : fields, "doneAt" : FieldValue.delete()]
+        }
         tasksCollection.document(id).updateData(fields) { (error) in
-            if let error = error {
-                completion(.failure(error))
-            }else{
-                completion(.success(()))
-            }
+                if let error = error {
+                    completion(.failure(error))
+                }else{
+                    completion(.success(()))
+                }
         }
     }
 }
