@@ -17,8 +17,25 @@ class CalendarView: UIView {
         return calendar
     }()
     
+    private lazy var titleLable: UILabel = {
+        let lable = UILabel()
+        lable.text = "Select deadline"
+        lable.font = UIFont.init(name: "AvenirNext-semiBold", size: 14)
+        lable.textAlignment = .center
+        return lable
+    }()
+    
+     private lazy var removeButton: UIButton = {
+        let butoon = UIButton(type: .system)
+        butoon.setTitle("remove", for: .normal)
+        butoon.setTitleColor(.white, for: .normal)
+        butoon.backgroundColor = .systemRed
+        butoon.addTarget(self, action: #selector(removeButtonTapped(_:)), for: .touchUpInside)
+       return butoon
+    }()
+    
     private lazy var stackVeiw: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [calendar])
+       let stackView = UIStackView(arrangedSubviews: [titleLable, calendar, removeButton ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 16
@@ -41,8 +58,14 @@ class CalendarView: UIView {
             stackVeiw.topAnchor.constraint(equalTo: topAnchor, constant: 24),
             stackVeiw.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             stackVeiw.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            stackVeiw.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 24),
-            stackVeiw.heightAnchor.constraint(equalToConstant: 240)
+            stackVeiw.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24),
+            calendar.heightAnchor.constraint(equalToConstant: 240),
+            titleLable.heightAnchor.constraint(equalToConstant: 24),
+            removeButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    @objc func removeButtonTapped(_ sender: UIButton ){
+        print("removed")
     }
 }
