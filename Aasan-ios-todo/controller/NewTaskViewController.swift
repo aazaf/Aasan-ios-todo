@@ -21,6 +21,12 @@ class NewTaskViewController: UIViewController {
     @Published private var taskString: String?
     
     weak var delegate : TasksVCDelegate?
+    
+    private lazy var calanderView: CalendarView = {
+       let view = CalendarView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,11 +88,22 @@ class NewTaskViewController: UIViewController {
           return keyboardHeight
       }
     
+    private func showCalander() {
+        view.addSubview(calanderView)
+        NSLayoutConstraint.activate([
+            calanderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            calanderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calanderView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
     @objc private func dismissViewController(){
          dismiss(animated: true, completion: nil)
      }
     
     @IBAction func calendarButtonTapped(_ sender: Any) {
+        taskTextField.resignFirstResponder()
+        showCalander()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
